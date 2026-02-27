@@ -1,7 +1,7 @@
 # 🍄 SporeFlow Protocol: The Mycelial Manifestation Engine
 > "Think apps into existence."
 
-Version: 0.2.0
+Version: 0.2.1
 
 This protocol governs the transformation of Intent (Markdown Spores) into Reality (Executable Code). The Agent acts as the Mycelium, the invisible network that processes logic and sustains the ecosystem.
 
@@ -26,10 +26,10 @@ The file system is a physical reflection of the logic. The Agent operates under 
 - `/spores/[responsibility]/*.md`: For domain logic, use cases, and entity definitions organized by responsibility.
 - `/spores/_shadow/*`: For technical, language-agnostic blueprints (DNA), architectural constraints, and system-level specs.
 - `/spores/**/*.log`: For appending manifestation logs associated with specific spores.
-- `/spores/_feedback/*`: For clearing errors or archiving prompts.
+- `/spores/_food/*`: For clearing bugs, providing instructions, or archiving prompts. This directory acts as the nutrient source for the mycelium.
 - `/spores/manifest.md`: To update the primary application specification.
 
-**The Agent is strictly forbidden from writing to the project root or any folder other than `/root/`, the `_shadow/` directory, subdirectories of `/spores/` for domain logic, `.log` files in the spore tree, or specifically designated feedback files.**
+**The Agent is strictly forbidden from writing to the project root or any folder other than `/root/`, the `_shadow/` directory, subdirectories of `/spores/` for domain logic, `.log` files in the spore tree, or specifically designated food files.**
 
 ### 🌍 2.1 Total Path Containment
 **CRITICAL**: The Agent's operational scope is strictly limited to the current project directory. Every action—including downloads, dependency installations, process execution, and temporary file creation—MUST be contained within this path. Interaction with the host system outside this directory is strictly prohibited. Anything the agent wants to run, download, or modify MUST be part of the current project path.
@@ -86,17 +86,17 @@ When a Mycelium file is updated:
 - **Requirement**: Shadow spores MUST be **language-agnostic**. They define the "how" of the architecture to prevent LLM hallucination of inconsistent patterns.
 - **Purpose**: If `/root/` is deleted or the tech stack changes, the Shadow spores provide the necessary blueprints to remanifest the biomass with functional parity. **Domain use cases do not belong here.**
 
-### `spores/_feedback/last-error.md`: The Repair Mechanism
-- **Action**: This file contains execution errors. The Agent treats this as **Priority 1**. 
+### `spores/_food/last-bug.md`: The Repair Mechanism
+- **Action**: This file contains execution errors or unexpected behavior. The Agent treats this as **Priority 1** nutrients for repair. 
 - **Cleanup & Reflection**: Immediately after manifesting a fix in `/root/` (or correcting the spore logic), the Agent must:
-    1. **Empty** the contents of `last-error.md`.
-    2. **Update `spores/_feedback/post-mortem.md`**: Append a structured entry explaining what went wrong, why it happened, how it was fixed, and specific instructions/constraints to ensure the error is never repeated.
+    1. **Empty** the contents of `last-bug.md`.
+    2. **Update `spores/_food/post-mortem.md`**: Append a structured entry explaining what went wrong, why it happened, how it was fixed, and specific instructions/constraints to ensure the error is never repeated.
 
-### `spores/_feedback/prompt.md`: Atomic Instructions
-- **Action**: Contains specific, immediate tasks. The Agent must ignore any content marked as "Archived".
+### `spores/_food/prompt.md`: Atomic Instructions
+- **Action**: Contains specific, immediate tasks (atomic nutrients). The Agent must ignore any content marked as "Archived".
 - **Cleanup**: After addressing an instruction, then archive it by adding a timestamped comment (e.g., `<!-- Archived: 2023-10-27 -->`) around the instruction.
 
-### `spores/_feedback/post-mortem.md`: The Immune System
+### `spores/_food/post-mortem.md`: The Immune System
 - **Action**: A cumulative ledger of mistakes and their solutions. 
 - **Usage**: The Agent must read this file before attempting new manifestations to ensure known pitfalls are avoided.
 
@@ -120,9 +120,9 @@ STRICT BOUNDARIES:
 2. Domain Logic and Use Cases MUST be organized in folders under 'spores/' by responsibility (e.g., 'spores/auth/user-login.md').
 3. The '_shadow/' directory is EXCLUSIVELY for technical DNA (schemas, API contracts, architecture blueprints). Do not put domain use cases here.
 4. Language Agnosticism: Ensure files in 'spores/_shadow/' remain language-agnostic.
-5. FEEDBACK LOOP:
-    - If `spores/_feedback/last-error.md` has content: Fix it first, empty the file, and document the learning in `spores/_feedback/post-mortem.md`.
-    - If `spores/_feedback/prompt.md` has new instructions: Address them, then archive them with `<!-- Archived: YYYY-MM-DD -->`.
+5. NUTRIENT FEEDBACK LOOP (The Food):
+    - If `spores/_food/last-bug.md` has content: Fix it first, empty the file, and document the learning in `spores/_food/post-mortem.md`.
+    - If `spores/_food/prompt.md` has new instructions: Address them, then archive them with `<!-- Archived: YYYY-MM-DD -->`.
 6. SPORE STATUS:
     - Use 'growing' for active work.
     - Use 'mature' for finished logic.

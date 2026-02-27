@@ -21,11 +21,11 @@ Once the manifest is created, ask the agent to:
 *   **Create Example Spores**: "Generate some initial domain spores to kick off the project."
 *   **Define the DNA**: Request the creation of files in `spores/_shadow/` to define technical blueprints (database schemas, API contracts, folder conventions) that are language-agnostic.
 
-### 2. The Feedback Loop
-The agent monitors specific files in `spores/_feedback/` to self-correct and take instructions:
-*   **Error Correction**: If you encounter a bug or execution error, paste the details into `spores/_feedback/last-error.md`. The agent treats this as Priority 1, fixes it, and moves the lesson to `post-mortem.md`.
-*   **Atomic Tasks**: To give the agent specific tasks, add them to `spores/_feedback/prompt.md`. The agent will complete the task and archive the text automatically.
-*   **Knowledge Injection**: You can drop any documentation or factual files into the `_feedback` directory to prevent the AI from hallucinating architectural or business rules.
+### 2. The Nutrient Loop (Feeding the Mycelium)
+The agent monitors specific files in `spores/_food/` to self-correct and take instructions:
+*   **Bug Correction**: If you encounter a bug or execution error, paste the details into `spores/_food/last-bug.md`. The agent treats this as Priority 1 nutrients, fixes it, and moves the lesson to `post-mortem.md`.
+*   **Atomic Tasks**: To give the agent specific tasks, add them to `spores/_food/prompt.md`. The agent will complete the task and archive the text automatically.
+*   **Knowledge Injection**: You can drop any documentation or factual files into the `_food` directory to provide the mycelium with necessary information to prevent hallucinations of architectural or business rules.
 
 ### 3. Watching & Syncing
 You can tell the agent to "Keep watchers open." This instructs the agent to monitor changes in your Spore files and automatically update the code in `/root/` whenever you modify your intent.
