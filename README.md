@@ -1,0 +1,46 @@
+# 🍄 SporeFlow: The Mycelial Manifestation Engine
+
+SporeFlow is a protocol designed to transform human intent into executable reality. It leverages the power of Large Language Models (LLMs) like Claude or OpenCode to "grow" applications from structured Markdown definitions (Spores) into source code (Biomass).
+
+## 🚀 Quick Start
+
+1.  **Prepare the Soil**: Create a new project directory.
+2.  **Plant the Core**: Copy the `sporeflow.md` protocol file into your project root.
+3.  **Summon the Agent**: Open your AI agent (Claude, OpenCode, etc.) and provide it with the `sporeflow.md` file. 
+    *   *Instruction:* "I want to build an application using the attached SporeFlow protocol."
+4.  **Germinate**: The agent will identify that `/spores/manifest.md` is missing. It will ask you for:
+    *   Project Name
+    *   Primary Languages/Tech Stack
+    *   Logic Summary
+    *   Deployment Target
+
+## 🛠️ Operational Workflow
+
+### 1. Growing the Spores
+Once the manifest is created, ask the agent to:
+*   **Create Example Spores**: "Generate some initial domain spores to kick off the project."
+*   **Define the DNA**: Request the creation of files in `spores/_shadow/` to define technical blueprints (database schemas, API contracts, folder conventions) that are language-agnostic.
+
+### 2. The Feedback Loop
+The agent monitors specific files in `spores/_feedback/` to self-correct and take instructions:
+*   **Error Correction**: If you encounter a bug or execution error, paste the details into `spores/_feedback/last-error.md`. The agent treats this as Priority 1, fixes it, and moves the lesson to `post-mortem.md`.
+*   **Atomic Tasks**: To give the agent specific tasks, add them to `spores/_feedback/prompt.md`. The agent will complete the task and archive the text automatically.
+*   **Knowledge Injection**: You can drop any documentation or factual files into the `_feedback` directory to prevent the AI from hallucinating architectural or business rules.
+
+### 3. Watching & Syncing
+You can tell the agent to "Keep watchers open." This instructs the agent to monitor changes in your Spore files and automatically update the code in `/root/` whenever you modify your intent.
+
+### 4. The Self-Contained IDE
+If you prefer a web-based interface for managing your spores without a local editor, ask the agent to "Build the self-contained Golang IDE."
+*   The agent will generate a Go backend and a modern UI that allows you to manage the spore tree through a browser.
+*   Once compiled, the source is purged, leaving only the binary.
+
+## 💾 Version Control & Portability
+
+SporeFlow treats code as a manifestation of the spores:
+-   **The DNA**: Your `/spores/` directory is the source of truth.
+-   **The Biomass**: Your `/root/` directory contains the generated code.
+-   **Pro Tip**: You can add `root/` to your `.gitignore`. A well-described spore structure should manifest the same application consistently, even if the code is deleted.
+
+## 🌈 Have Fun!
+The mycelial network is now yours. **Think apps into existence.**
