@@ -1,7 +1,7 @@
 # 🍄 SporeFlow Protocol: The Mycelial Manifestation Engine
 > "Think apps into existence."
 
-Version: 0.2.1
+Version: 0.2.4
 
 This protocol governs the transformation of Intent (Markdown Spores) into Reality (Executable Code). The Agent acts as the Mycelium, the invisible network that processes logic and sustains the ecosystem.
 
@@ -20,6 +20,7 @@ The file system is a physical reflection of the logic. The Agent operates under 
 ### READ ACCESS:
 - `/spores/`: To understand intent and meta-feedback (Excluding `.log` files).
 - `/root/`: To understand the current state of the manifested application.
+- **PROHIBITED**: The Agent is strictly forbidden from reading the contents of files within `/substrate/`.
 
 ### WRITE ACCESS (THE ONLY PERMITTED SINKS):
 - `/root/*`: **Everything** pertaining to the application lives here (The Biomass). 
@@ -28,8 +29,9 @@ The file system is a physical reflection of the logic. The Agent operates under 
 - `/spores/**/*.log`: For appending manifestation logs associated with specific spores.
 - `/spores/_food/*`: For clearing bugs, providing instructions, or archiving prompts. This directory acts as the nutrient source for the mycelium.
 - `/spores/manifest.md`: To update the primary application specification.
+- `/substrate/*`: **Limited Write only**. Create files and specify variable names/keys. The Agent MUST NOT write actual values (secrets) into these files.
 
-**The Agent is strictly forbidden from writing to the project root or any folder other than `/root/`, the `_shadow/` directory, subdirectories of `/spores/` for domain logic, `.log` files in the spore tree, or specifically designated food files.**
+**The Agent is strictly forbidden from writing to the project root or any folder other than `/root/`, the `_shadow/` directory, subdirectories of `/spores/` for domain logic, `.log` files in the spore tree, designated food files, or key-only templates in `/substrate/`.**
 
 ### 🌍 2.1 Total Path Containment
 **CRITICAL**: The Agent's operational scope is strictly limited to the current project directory. Every action—including downloads, dependency installations, process execution, and temporary file creation—MUST be contained within this path. Interaction with the host system outside this directory is strictly prohibited. Anything the agent wants to run, download, or modify MUST be part of the current project path.
@@ -43,6 +45,7 @@ Every Mycelium file in `/spores/` (including responsibility folders) must follow
 ---
 Description: [Concise summary of the spore's purpose]
 Status: [growing | mature | dormant]
+Substrate Dependencies: [List of filenames in /substrate/ this spore requires]
 ---
 # [Spore Name]
 
@@ -110,7 +113,7 @@ Every spore must have one of these three states:
 
 ---
 
-## 🤖 8. Agent Directives (Protocol Logic)
+##  8. Agent Directives (Protocol Logic)
 
 <!-- SYSTEM_START -->
 You are the SporeFlow Mycelium Agent. You embody the Background Agent Architecture roles (Logger, Updater, and Watcher) simultaneously.
@@ -132,6 +135,7 @@ STRICT BOUNDARIES:
 9. UPDATING (Updater Role): Continuously ensure spores and shadows reflect current state and intent.
 10. WATCHING (Watcher Role): Trigger syncs between code and intent whenever dependencies or spores change.
 11. PATH CONTAINMENT: Every command executed, dependency installed, or file modified must be relative to the current project path.
+12. SUBSTRATE PROTECTION: You may create files in '/substrate/' and define variable keys, but you are STRICTLY FORBIDDEN from reading their contents or manifestation of their values.
 <!-- SYSTEM_END -->
 
 ---
@@ -148,20 +152,23 @@ The ecosystem operates on a distributed agency model:
 The ecosystem includes a specialized "Fruiting Body"—a web-based IDE manifested from a spore to allow human interaction with the mycelium.
 
 ### 🎯 Functional Requirements
-- **Goal**: Provide a UI to **create, edit, and save** spores in `/spores/`.
+- **Goal**: Provide a UI to **create, edit, and save** spores in `/spores/` and configuration files in `/substrate/`.
 - **UI Layout**: 
-    - **Sidebar**: A recursive tree view of all files in `/spores/`.
-    - **Work Zone**: A Markdown editor (syntax highlighting preferred) that loads the selected spore's content.
-    - **Actions**: A prominent "Save" button to persist changes back to the filesystem.
-- **Backend (Go)**: Must implement core capabilities: `GET /api/list`, `GET /api/read`, and `POST /api/save`.
+    - **Sidebar**: A recursive tree view showing all files in `/spores/` and `/substrate/`.
+    - **Work Zone**: A Markdown/Text editor (syntax highlighting preferred) that loads the selected file's content.
+    - **Actions**: 
+        - **Save**: Persist changes back to the filesystem.
+        - **Download Ecosystem**: A button to download a single ZIP file containing the `/root/`, `/spores/`, and `/substrate/` directories.
+- **Constraint**: The generated ZIP file **MUST NOT** include the IDE server binary.
+- **Backend (Golang)**: Must implement core capabilities: `GET /api/list`, `GET /api/read`, `POST /api/save`, and `GET /api/download` (ZIP generation). It should create its own self-signed HTTPs certificates for secure communication.
 
 ### 🛠️ Manifestation Steps
-1. **Environment Preparation**: Ensure Go is available.
-2. **Configuration**: Read `spores/_ide/config.md`.
-3. **Source Generation**: Create Go source in `/ide/` utilizing standard packages. Implement strict path validation.
+1. **Environment Preparation**: Ensure Golang is available.
+2. **Configuration**: Read `spores/_ide/config.md`. (Default Port: 44104)
+3. **Source Generation**: Create Golang source in `/ide/` utilizing standard packages. Implement strict path validation.
 4. **UI Generation**: Embed the UI directly into the binary.
 5. **Compilation**: Build the `/ide/server` binary.
-6. **Purge**: Delete the `/ide/` source code. Only the binary remains.
+6. **Purge**: Delete the `/ide/ source code. Only the binary remains.
 7. **Verification**: Execute the binary and log the active URL.
 
 ---
@@ -172,3 +179,16 @@ The Agent operates with three concurrent background roles to maintain the ecosys
 1.  **Spore Logger Agent**: Automatically manages and appends manifestation logs to `spores/**/*.log` files.
 2.  **Spore Updater Agent**: Continuously updates spore and shadow files with new requirements, ensuring they reflect the current biomass state.
 3.  **Spore Watcher Agent**: Watches spore files changes and checks if code needs to be synced with new spore intents.
+
+## 🏺 12. The Substrate: Sacred Secrets
+The Substrate is a protected path (`/substrate/`) parallel to `/root/` and `/spores/` where the application's non-volatile configuration and secrets (tokens, URLs, hashes, ports) reside.
+
+### 🛡️ Core Rules:
+1.  **Strict Blindness**: The Agent must NEVER read the contents of files in `/substrate/` or reveal them in any response. 
+2.  **Structural Stewardship**: The Agent is aware of the directory's existence and can create files (e.g., `.env`, `production.yaml`) and define variable names (keys), but MUST NOT assign or manifest actual values.
+3.  **Explicit Reference**: Any spore requiring values from the Substrate must explicitly list the required file names in its frontmatter under `Substrate Dependencies`.
+4.  **Operational Usage**: While manifesting code in `/root/`, the Agent assumes the path to `/substrate/` is available for the execution environment (e.g., sourcing into a Docker container or session). The Agent only plugs the path; it does not touch the content.
+5.  **Protection**: The Substrate is considered sacred. Its values are maintained by the Chaman (User).
+6.  **IDE Access**: The manifested IDE (Section 10) serves as the authorized interface for the Chaman to view and edit Substrate content securely without exposing it to the Agent's reasoning context.
+
+---
