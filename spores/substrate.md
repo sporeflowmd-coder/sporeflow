@@ -1,7 +1,6 @@
 ---
 Description: Technical DNA for the protected configuration and secret management layer.
 Status: dormant
-Substrate Dependencies: []
 ---
 # 🏺 Substrate: Sacred Secrets
 

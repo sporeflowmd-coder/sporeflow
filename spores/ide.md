@@ -1,7 +1,6 @@
 ---
 Description: Technical blueprints for the self-manifesting web interface (The Fruiting Body).
 Status: dormant
-Substrate Dependencies: [ide/config.md]
 ---
 # 🛠️ The Self-Manifesting IDE
 
