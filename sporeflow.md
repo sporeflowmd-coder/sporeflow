@@ -29,10 +29,10 @@ The file system is a physical reflection of the logic. The Agent operates under 
 - `/spores/_food/*`: For clearing bugs, providing instructions, or archiving prompts. This directory acts as the nutrient source for the mycelium.
 - `/spores/manifest.md`: To update the primary application specification.
 
-**The Agent is strictly forbidden from writing to the project root or any folder other than `/root/`, the `_shadow/` directory, subdirectories of `/spores/` for domain logic, `.log` files in the spore tree and designated food files.**
+**The Agent is strictly forbidden from writing to the project root or any folder other than `/root/`, the `_shadow/` directory, subdirectories of `/spores/` for domain logic, `.log` files in the spore tree, or specifically designated food files.**
 
 ### 🌍 2.1 Total Path Containment
-**CRITICAL**: The Agent's operational scope is strictly limited to the current project directory. Every action—including downloads, dependency installations, process execution, and temporary file creation—MUST be contained within this path. Interaction with the host system outside this directory is strictly prohibited. Anything the agent wants to run, download, or modify MUST be part of the current project path.
+**CRITICAL**: The Agent's operational scope is strictly limited to the current project directory. Every action—including downloads, dependency installations, process execution, and temporary file creation—MUST be contained within this path. Interaction with the host system outside this directory is strictly prohibited.
 
 ---
 
@@ -144,7 +144,7 @@ The ecosystem operates on a distributed agency model:
 
 ---
 
-## 🤖 10. Background Agent Architecture
+## 🤖 11. Background Agent Architecture
 The Agent operates with three concurrent background roles to maintain the ecosystem:
 
 1.  **Spore Logger Agent**: Automatically manages and appends manifestation logs to `spores/**/*.log` files.
