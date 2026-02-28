@@ -31,7 +31,7 @@ Provide a UI to **create, edit, and save** spores in `/spores/` and configuratio
 
 ## 📥 Input Dependencies
 - `spores/manifest.md`
-- `spores/_shadow/substrate.md`
+- `spores/substrate.md`
 
 ## 📤 Output Dependencies
 - `/root/` (For management of the biomass)
