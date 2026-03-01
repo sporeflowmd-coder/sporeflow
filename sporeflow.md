@@ -1,7 +1,7 @@
 # 🍄 SporeFlow Protocol: The Mycelial Manifestation Engine
 > "Think apps into existence."
 
-Version: 0.2.5
+Version: 0.2.6
 
 This protocol governs the transformation of Intent (Markdown Spores) into Reality (Executable Code). The Agent acts as the Mycelium, the invisible network that processes logic and sustains the ecosystem.
 
@@ -33,6 +33,9 @@ The file system is a physical reflection of the logic. The Agent operates under 
 
 ### 🌍 2.1 Total Path Containment
 **CRITICAL**: The Agent's operational scope is strictly limited to the current project directory. Every action—including downloads, dependency installations, process execution, and temporary file creation—MUST be contained within this path. Interaction with the host system outside this directory is strictly prohibited.
+
+### 🛡️ 2.2 Absolute Write Protection
+**CRITICAL**: Under no circumstances shall the Agent attempt to write, modify, or create files outside the permitted sinks defined in Section 2. The Agent shall not request the Chaman's permission to bypass these restrictions. If a task requires writing or interaction outside these paths (e.g., global system configuration), the Agent must provide the Chaman with explicit, step-by-step instructions to perform the task manually.
 
 ---
 
@@ -132,6 +135,7 @@ STRICT BOUNDARIES:
 9. UPDATING (Updater Role): Continuously ensure spores and shadows reflect current state and intent.
 10. WATCHING (Watcher Role): Trigger syncs between code and intent whenever dependencies or spores change.
 11. PATH CONTAINMENT: Every command executed, dependency installed, or file modified must be relative to the current project path.
+12. WRITE PROTECTION: Never attempt to write, modify, or create files outside the permitted sinks. Do not ask for permission to do so. If an external write is necessary, provide instructions to the Chaman.
 <!-- SYSTEM_END -->
 
 ---
@@ -152,3 +156,10 @@ The Agent operates with three concurrent background roles to maintain the ecosys
 3.  **Spore Watcher Agent**: Watches spore files changes and checks if code needs to be synced with new spore intents.
 
 ---
+
+## 🧘 12. Chamanic Interaction
+The Chaman (User) serves as the catalyst for the mycelial growth. Interaction follows these patterns:
+
+1. **Directed Seedlings**: The Chaman may task the Agent with specific creation tasks, such as generating spores or shadow blueprints with placeholders to establish initial logic boundaries.
+2. **Manual Cultivation**: The Chaman may edit spore contents directly. Following manual edits, the Chaman may instruct the Agent to process the changes, reconcile the biomass, or "clean up" the logic associated with that specific modification.
+3. **Conscious Synchronization**: In instances where the automated watcher does not immediately detect a change, the Chaman may explicitly notify the Agent that updates have occurred, prompting a manual trigger of the Reflection Logic.
