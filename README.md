@@ -1,6 +1,6 @@
 # 🍄 SporeFlow: The Mycelial Manifestation Engine
 
-SporeFlow is a protocol designed to transform human intent into executable reality. It leverages the power of Large Language Models (LLMs) like Claude or OpenCode to "grow" applications from structured Markdown definitions (Spores) into source code (Biomass).
+SporeFlow is a protocol designed to transform human intent into executable reality. It leverages the power of Large Language Models (LLMs) like Claude or OpenCode to "grow" applications from structured Markdown definitions (Spores) into source code (Biomass). It is not just another Spec-Driven Development (SSD) framework; it is an LLM Operating System designed to manifest value from intent. Just plain text and the raw power of LLMs.
 
 ## 🚀 Quick Start
 
