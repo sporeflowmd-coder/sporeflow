@@ -14,6 +14,14 @@ SporeFlow is a protocol designed to transform human intent into executable reali
     *   Logic Summary
     *   Deployment Target
 
+## Germinating
+
+To initialize your environment and begin the germination process immediately, run the following command in your terminal:
+
+```bash
+curl -sL https://raw.githubusercontent.com/sporeflowmd-coder/sporeflow/refs/heads/main/germinate.sh -o germinate.sh && bash germinate.sh
+```
+
 ## 🛠️ Operational Workflow
 
 ### 1. Growing the Spores
