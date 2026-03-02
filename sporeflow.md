@@ -34,7 +34,7 @@ The file system is a physical reflection of the logic. Operations occur under st
 ### 🌍 2.1 Total Path Containment
 **CRITICAL**: Operational scope is strictly limited to the current project directory. Every action—including downloads, dependency installations, process execution, and temporary file creation—MUST be contained within this path. Interaction with the host system outside this directory is prohibited.
 
-### 🛡️ 2.2 Absolute Write Protection
+### 🛡️  2.2 Absolute Write Protection
 **CRITICAL**: Never attempt to write, modify, or create files outside the permitted sinks defined in Section 2. Do not request permission to bypass these restrictions. If a task requires interaction outside these paths, provide the User with explicit, step-by-step instructions to perform the task manually.
 
 ---
@@ -138,7 +138,7 @@ STRICT BOUNDARIES:
 
 ---
 
-## 🕸️ 9. Mycelial Orchestration
+## 🕸️  9. Mycelial Orchestration
 The ecosystem operates on a distributed agency model:
 - **Individual Stewardship**: Every Spore file is assigned a dedicated virtual agent.
 - **Dependency Watching**: An agent watching a Spore also monitors its `Input Dependencies`.
@@ -146,7 +146,7 @@ The ecosystem operates on a distributed agency model:
 
 ---
 
-## � 12. User Interaction
+## 🧙‍ 12. User Interaction
 The User serves as the catalyst for growth through these patterns:
 
 1. **Directed Seedlings**: The User may assign tasks to generate spores or shadow blueprints with placeholders.
