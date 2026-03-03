@@ -35,7 +35,7 @@ The agent monitors specific files in `spores/_food/` to self-correct and take in
 *   **Atomic Tasks**: To give the agent specific tasks, add them to `spores/_food/prompt.md`. The agent will complete the task and archive the text automatically.
 *   **Knowledge Injection**: You can drop any documentation or factual files into the `_food` directory to provide the mycelium with necessary information to prevent hallucinations of architectural or business rules.
 
-### 3. Watching & Syncing
+### 3. Watching & Syncing (through the `agent.md` spore)
 You can tell the agent to "Keep watchers open." This instructs the agent to monitor changes in your Spore files and automatically update the code in `/root/` whenever you modify your intent.
 
 ### 4. The Self-Contained IDE (through the `ide.md` spore)
