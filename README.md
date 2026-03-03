@@ -38,7 +38,7 @@ The agent monitors specific files in `spores/_food/` to self-correct and take in
 ### 3. Watching & Syncing
 You can tell the agent to "Keep watchers open." This instructs the agent to monitor changes in your Spore files and automatically update the code in `/root/` whenever you modify your intent.
 
-### 4. The Self-Contained IDE
+### 4. The Self-Contained IDE (through the `ide.md` spore)
 If you prefer a web-based interface for managing your spores without a local editor, ask the agent to "Build the self-contained Golang IDE."
 *   The agent will generate a Go backend and a modern UI that allows you to manage the spore tree through a browser.
 *   Once compiled, the source is purged, leaving only the binary.
