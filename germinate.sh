@@ -5,10 +5,12 @@ SPOREFLOW_SOURCE_URL="https://raw.githubusercontent.com/sporeflowmd-coder/sporef
 
 # --- Argument Parsing ---
 SILENT=false
+CHARMS_RAW=""
 for arg in "$@"; do
     if [ "$arg" == "--silent" ]; then
         SILENT=true
-        shift
+    elif [[ "$arg" == --charms=* ]]; then
+        CHARMS_RAW="${arg#*=}"
     fi
 done
 
@@ -60,7 +62,21 @@ mkdir -p "$PROJECT_NAME/spores/_shadow"
 mkdir -p "$PROJECT_NAME/spores/_food"
 mkdir -p "$PROJECT_NAME/spores/core"
 
-# --- 4. Create Spore Manifest (The Root Spore) ---
+# --- 4. Process Charms ---
+CHARM_DEPS=""
+IFS=',' read -ra ADDR <<< "$CHARMS_RAW"
+for charm in "${ADDR[@]}"; do
+    charm_file="./charms/${charm}.md"
+    if [ -f "$charm_file" ]; then
+        cp "$charm_file" "$PROJECT_NAME/spores/_food/"
+        echo "✨ Infused charm: $charm"
+        CHARM_DEPS+="- /spores/_food/${charm}.md"$'\n'
+    else
+        echo "⚠️ Warning: Charm file $charm_file not found. Skipping."
+    fi
+done
+
+# --- 5. Create Spore Manifest (The Root Spore) ---
 cat <<EOF > "$PROJECT_NAME/spores/manifest.md"
 ---
 Description: Root Spore for $PROJECT_NAME. Defines the global vision and environment.
@@ -80,9 +96,9 @@ $LOGIC_SUMMARY
 
 ## 📤 Output Dependencies
 - /spores/_shadow/architecture.md
-EOF
+${CHARM_DEPS}EOF
 
-# --- 5. Create Nutrient Files (_food) ---
+# --- 6. Create Nutrient Files (_food) ---
 touch "$PROJECT_NAME/spores/_food/last-bug.md"
 
 cat <<EOF > "$PROJECT_NAME/spores/_food/prompt.md"
@@ -97,7 +113,7 @@ Errors and fixes are recorded here to prevent regressions.
 ---
 EOF
 
-# --- 6. Create Initial Shadow Spore (Architectural DNA) ---
+# --- 7. Create Initial Shadow Spore (Architectural DNA) ---
 cat <<EOF > "$PROJECT_NAME/spores/_shadow/architecture.md"
 ---
 Description: Language-agnostic technical blueprint for $PROJECT_NAME.
@@ -113,7 +129,7 @@ Status: growing
 TBD
 EOF
 
-# --- 7. Finalize ---
+# --- 8. Finalize ---
 echo "--- Initial manifestation ---" > "$PROJECT_NAME/spores/manifest.log"
 cp "sporeflow.md" "$PROJECT_NAME/"
 

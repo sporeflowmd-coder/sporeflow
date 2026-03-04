@@ -22,6 +22,19 @@ To initialize your environment and begin the germination process immediately, ru
 curl -sL https://raw.githubusercontent.com/sporeflowmd-coder/sporeflow/refs/heads/main/germinate.sh -o germinate.sh && bash germinate.sh
 ```
 
+### Advanced Germination (Charms)
+
+You can pre-load your project with "Charms"—predefined logic or tools stored in a `./charms/` directory. Use the `--charms` parameter followed by a comma-separated list of filenames (excluding the `.md` extension).
+
+```bash
+bash germinate.sh --charms=agent,ide
+```
+
+This will:
+1. Look for `./charms/agent.md` and `./charms/ide.md`.
+2. Copy them into your new project's `spores/_food/` directory.
+3. Automatically register them as dependencies in your `manifest.md`.
+
 If using **OpenCode**, you can create a file called `opencode.jsonc` with the following content to use SporeFlow as a custom agent:
 
 ```jsonc
