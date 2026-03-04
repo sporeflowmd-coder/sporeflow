@@ -22,6 +22,23 @@ To initialize your environment and begin the germination process immediately, ru
 curl -sL https://raw.githubusercontent.com/sporeflowmd-coder/sporeflow/refs/heads/main/germinate.sh -o germinate.sh && bash germinate.sh
 ```
 
+If using **OpenCode**, you can create a file called `opencode.jsonc` with the following content to use SporeFlow as a custom agent:
+
+```jsonc
+{
+  "$schema": "https://opencode.ai/config.json",
+  "default_agent": "sporeflow",
+  "agent": {
+    "sporeflow": {
+      "temperature": 0.1,
+      "prompt": "{file:./sporeflow.md}"
+    }
+  }
+}
+```
+
+Similarly, **Claude Code** also has a custom agent configuration which can be used to automate the protocol injection. See the configuration guide [here](https://code.claude.com/docs/en/sub-agents).
+
 ## 🛠️ Operational Workflow
 
 ### 1. Growing the Spores
@@ -35,10 +52,10 @@ The agent monitors specific files in `spores/_food/` to self-correct and take in
 *   **Atomic Tasks**: To give the agent specific tasks, add them to `spores/_food/prompt.md`. The agent will complete the task and archive the text automatically.
 *   **Knowledge Injection**: You can drop any documentation or factual files into the `_food` directory to provide the mycelium with necessary information to prevent hallucinations of architectural or business rules.
 
-### 3. Watching & Syncing (through the `agent.md` charm)
+### 3. Watching & Syncing
 You can tell the agent to "Keep watchers open." This instructs the agent to monitor changes in your Spore files and automatically update the code in `/root/` whenever you modify your intent.
 
-### 4. The Self-Contained IDE (through the `ide.md` charm)
+### 4. The Self-Contained IDE
 If you prefer a web-based interface for managing your spores without a local editor, ask the agent to "Build the self-contained Golang IDE."
 *   The agent will generate a Go backend and a modern UI that allows you to manage the spore tree through a browser.
 *   Once compiled, the source is purged, leaving only the binary.
