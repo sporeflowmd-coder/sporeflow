@@ -113,7 +113,7 @@ $LOGIC_SUMMARY
 ## 📥 Input Dependencies
 - None (Root)
 
-## 📤 Output Dependencies
+## 📤 Output Dependencies: Must be read at least once
 - /spores/_shadow/architecture.md
 ${CHARM_DEPS}
 EOF
