@@ -7,11 +7,26 @@ SPOREFLOW_SOURCE_URL="https://raw.githubusercontent.com/sporeflowmd-coder/sporef
 SILENT=false
 CHARMS_RAW=""
 for arg in "$@"; do
-    if [ "$arg" == "--silent" ]; then
-        SILENT=true
-    elif [[ "$arg" == --charms=* ]]; then
-        CHARMS_RAW="${arg#*=}"
-    fi
+    case "$arg" in
+        --silent)
+            SILENT=true
+            ;;
+        --charms=*)
+            CHARMS_RAW="${arg#*=}"
+            ;;
+        --project-name=*)
+            PROJECT_NAME="${arg#*=}"
+            ;;
+        --tech-stack=*)
+            TECH_STACK="${arg#*=}"
+            ;;
+        --logic-summary=*)
+            LOGIC_SUMMARY="${arg#*=}"
+            ;;
+        --deployment=*)
+            DEPLOYMENT="${arg#*=}"
+            ;;
+    esac
 done
 
 # --- Input Helpers ---
@@ -20,6 +35,10 @@ prompt_user() {
     local prompt_text=$2
     local default_val=$3
     local examples=$4
+
+    if [ -n "${!var_name}" ]; then
+        return
+    fi
 
     if [ "$SILENT" = true ]; then
         eval "$var_name=\"$default_val\""
@@ -94,9 +113,10 @@ $LOGIC_SUMMARY
 ## 📥 Input Dependencies
 - None (Root)
 
-## 📤 Output Dependencies
+## 📤 Output Dependencies: Must be read at least once
 - /spores/_shadow/architecture.md
-${CHARM_DEPS}EOF
+${CHARM_DEPS}
+EOF
 
 # --- 6. Create Nutrient Files (_food) ---
 touch "$PROJECT_NAME/spores/_food/last-bug.md"
